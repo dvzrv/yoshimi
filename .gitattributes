@@ -1,4 +1,2 @@
 /src/Splash/SplashPngHex -diff
 /src/Splash/splash_screen.h -diff
-.git*           export-ignore
-.travis.yml     export-ignore
