@@ -1320,7 +1320,7 @@ BugFix: GUI not setting kit item names.
 2019-5-27 Will
 * BugFix: Start message lockup only on Gnome or KDE
 * Fixed undefined integer type for BSD.
-* Set bugfix version as 1.5.11.3.
+* Set bugfix version as 1.5.11.4.
 
 2019-5-26 Will
 * BugFix: CLI load MIDI-learn list from history failed.
