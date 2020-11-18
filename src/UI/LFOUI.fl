@@ -78,13 +78,14 @@ pars=NULL;} {}
     code {lfoui->hide();
     hide();} {}
   }
-  Function {make_window()} {} {
-    Fl_Window lfoui {
-      xywh {1182 491 275 70} type Double color 50 labelfont 1 labelsize 12 hide resizable
-      class Fl_Group
+  Function {make_window()} {open
+  } {
+    Fl_Window lfoui {open
+      xywh {1082 442 275 70} type Double color 50 labelfont 1 labelsize 12 resizable
+      class Fl_Group visible
     } {
       Fl_Group lfoparamswindow {
-        label LFO
+        label LFO open
         xywh {0 0 275 70} box PLASTIC_UP_BOX color 223 labelfont 1 labelsize 10 align 17
       } {
         Fl_Check_Button bpm {
@@ -94,7 +95,7 @@ pars=NULL;} {}
         Fl_Check_Button continous {
           label {Cont.}
           callback {//
-          send_data(0, group, LFOINSERT::control::continuous, o->value(), TOPLEVEL::type::Integer);} selected
+          send_data(0, group, LFOINSERT::control::continuous, o->value(), TOPLEVEL::type::Integer);}
           tooltip {Continuous LFO
 
 Run the LFO continuously even when the sound is not playing. If BPM is on, then the LFO phase will be reset when the song position is changed.} xywh {230 20 15 15} down_box DOWN_BOX labelsize 10
@@ -138,7 +139,7 @@ Run the LFO continuously even when the sound is not playing. If BPM is on, then 
           label Type
           callback {//
           send_data(0, group, LFOINSERT::control::type, o->value(), TOPLEVEL::type::Integer);}
-          tooltip {LFO function} xywh {220 50 50 15} down_box BORDER_BOX labelsize 9 align 2 textsize 8
+          tooltip {LFO function} xywh {220 50 50 15} down_box BORDER_BOX labelsize 9 align 1 textsize 8
         } {
           MenuItem Lsine {
             label SINE
@@ -181,15 +182,15 @@ Run the LFO continuously even when the sound is not playing. If BPM is on, then 
             xywh {100 100 100 20} labelfont 1 labelsize 10
           }
         }
-        Fl_Group {} {
-          label {Rand.} open
-          xywh {140 15 55 50} box GTK_UP_FRAME labelsize 10 align 17
+        Fl_Group randgroup {
+          label {Rand.} open selected
+          xywh {140 15 55 48} labelsize 10 align 18
         } {
           Fl_Dial randomness {
             label {Amp.}
             callback {//
           send_data(0, group, LFOINSERT::control::amplitudeRandomness, o->value(), TOPLEVEL::type::Integer);}
-            tooltip {LFO Amplitude Randomness} xywh {145 30 20 20} box ROUND_UP_BOX labelsize 10 maximum 127 step 1
+            tooltip {LFO Amplitude Randomness} xywh {145 30 20 20} box ROUND_UP_BOX labelsize 10 align 1 maximum 127 step 1
             code1 {o->setValueType(VC_percent127);}
             class WidgetPDial
           }
@@ -197,7 +198,7 @@ Run the LFO continuously even when the sound is not playing. If BPM is on, then 
             label {Freq.}
             callback {//
           send_data(0, group, LFOINSERT::control::frequencyRandomness, o->value(), TOPLEVEL::type::Integer);}
-            tooltip {LFO Frequency Randomness} xywh {170 30 20 20} box ROUND_UP_BOX labelsize 10 maximum 127 step 1
+            tooltip {LFO Frequency Randomness} xywh {170 30 20 20} box ROUND_UP_BOX labelsize 10 align 1 maximum 127 step 1
             code1 {o->setValueType(VC_percent127);}
             class WidgetPDial
           }
@@ -248,6 +249,7 @@ Run the LFO continuously even when the sound is not playing. If BPM is on, then 
     randomness->labelsize(size);
     freqrand->labelsize(size);
     stretch->labelsize(size);
+    randgroup->labelsize(size);
 
     LFOtype->labelsize(int(9 * dScale));
         Lsine->labelsize(size);
@@ -265,6 +267,7 @@ Run the LFO continuously even when the sound is not playing. If BPM is on, then 
     lfoP->labelsize(size);
 
     continous->labelsize(size);
+    bpm->labelsize(size);
 
     lfoui->redraw();} {}
   }
