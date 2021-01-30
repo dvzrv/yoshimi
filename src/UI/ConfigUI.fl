@@ -35,6 +35,9 @@ decl {\#include "Misc/Config.h"} {public local
 decl {\#include "Misc/SynthEngine.h"} {private local
 }
 
+decl {\#include "UI/WidgetCheckButton.h"} {public global
+}
+
 decl {\#include "Misc/Bank.h"} {private local
 }
 
@@ -215,6 +218,7 @@ alsaTab->hide();}
           xywh {5 25 382 277} box THIN_UP_BOX labelsize 12 hide
         } {
           Fl_Check_Button bankHighlight {
+            class Fl_Check_Button2
             label {Enable Bank Highlight}
             callback {//
                         send_data(0, CONFIG::control::enableHighlight, o->value(), TOPLEVEL::type::Integer);}
@@ -222,6 +226,7 @@ alsaTab->hide();}
             code0 {o->value(synth->getRuntime().bankHighlight);}
           }
           Fl_Check_Button setDefaultState {
+            class Fl_Check_Button2
             label {* Start With Default State}
             callback {//
                         send_data(0, CONFIG::control::defaultStateStart, o->value(), TOPLEVEL::type::Integer);}
@@ -231,6 +236,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code1 {if (synth->getIsLV2Plugin()) o->deactivate();}
           }
           Fl_Check_Button nonFatal {
+            class Fl_Check_Button2
             label {Hide Non Fatal Errors}
             callback {//
                         send_data(0, CONFIG::control::hideNonFatalErrors, o->value(), TOPLEVEL::type::Integer);}
@@ -239,6 +245,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code1 {if (synth->getIsLV2Plugin()) o->deactivate();}
           }
           Fl_Check_Button showSplash {
+            class Fl_Check_Button2
             label {Show Splash Screen}
             callback {//
                         send_data(0, CONFIG::control::showSplash, o->value(), TOPLEVEL::type::Integer);}
@@ -247,6 +254,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code1 {if (synth->getUniqueId() != 0) o->hide(); else if (synth->getIsLV2Plugin()) o->deactivate();}
           }
           Fl_Check_Button logTimes {
+            class Fl_Check_Button2
             label {Log Load times}
             callback {//
                         send_data(0, CONFIG::control::logInstrumentLoadTimes, o->value(), TOPLEVEL::type::Integer);}
@@ -254,6 +262,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code0 {o->value(synth->getRuntime().showTimes);}
           }
           Fl_Check_Button logXML {
+            class Fl_Check_Button2
             label {Log XML Headers}
             callback {//
                         send_data(0, CONFIG::control::logXMLheaders, o->value(), TOPLEVEL::type::Integer);}
@@ -262,6 +271,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code1 {if (synth->getIsLV2Plugin()) o->deactivate();}
           }
           Fl_Check_Button saveAllXML {
+            class Fl_Check_Button2
             label {Include all data in XML files}
             callback {//
                         send_data(0, CONFIG::control::saveAllXMLdata, o->value(), TOPLEVEL::type::Integer);}
@@ -269,6 +279,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code0 {o->value(synth->getRuntime().xmlmax);}
           }
           Fl_Check_Button enableGUI {
+            class Fl_Check_Button2
             label {* Enable GUI}
             callback {//
                         int tmp = o->value();
@@ -284,6 +295,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code1 {if (synth->getUniqueId() != 0) o->hide(); else if (synth->getIsLV2Plugin()) o->deactivate();}
           }
           Fl_Check_Button enableCLI {
+            class Fl_Check_Button2
             label {* Enable CLI}
             callback {//
                         send_data(0, CONFIG::control::enableCLI, o->value(), TOPLEVEL::type::Integer);}
@@ -292,6 +304,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code1 {if (synth->getUniqueId() != 0) o->hide(); else if (synth->getIsLV2Plugin()) o->deactivate();}
           }
           Fl_Check_Button enableAuto {
+            class Fl_Check_Button2
             label {Enable Auto Instance}
             callback {//
                         send_data(0, CONFIG::control::enableAutoInstance, o->value(), TOPLEVEL::type::Integer);}
@@ -300,6 +313,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code1 {if (synth->getUniqueId() != 0) o->hide(); else if (synth->getIsLV2Plugin()) o->deactivate();}
           }
           Fl_Check_Button singleMaster {
+            class Fl_Check_Button2
             label {* Enable Single Master}
             callback {//
           send_data(0, CONFIG::control::enableSinglePath, o->value(), TOPLEVEL::type::Integer);}
@@ -311,6 +325,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             xywh {278 110 50 1} box NO_BOX labelsize 12 align 129 textsize 12
           }
           Fl_Check_Button H_instrument {
+            class Fl_Check_Button2
             label Instrument
             callback {//
                        send_data(TOPLEVEL::action::lowPrio, CONFIG::control::historyLock, o->value(), TOPLEVEL::type::Integer, TOPLEVEL::section::config,TOPLEVEL::XML::Instrument);}
@@ -318,6 +333,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code0 {o->value(_SYS_::F2B(fetchData(0, CONFIG::control::historyLock, TOPLEVEL::section::config, TOPLEVEL::XML::Instrument, UNUSED, UNUSED, UNUSED, UNUSED, UNUSED, TOPLEVEL::action::lowPrio)));}
           }
           Fl_Check_Button H_patchset {
+            class Fl_Check_Button2
             label {Patch Set}
             callback {//
                        send_data(TOPLEVEL::action::lowPrio, CONFIG::control::historyLock, o->value(), TOPLEVEL::type::Integer, TOPLEVEL::section::config,TOPLEVEL::XML::Patch);}
@@ -325,6 +341,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code0 {o->value(_SYS_::F2B(fetchData(0, CONFIG::control::historyLock, TOPLEVEL::section::config, TOPLEVEL::XML::Patch, UNUSED, UNUSED, UNUSED, UNUSED, UNUSED, TOPLEVEL::action::lowPrio)));}
           }
           Fl_Check_Button H_scale {
+            class Fl_Check_Button2
             label Scale
             callback {//
                        send_data(TOPLEVEL::action::lowPrio, CONFIG::control::historyLock, o->value(), TOPLEVEL::type::Integer, TOPLEVEL::section::config,TOPLEVEL::XML::Scale);}
@@ -332,6 +349,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code0 {o->value(_SYS_::F2B(fetchData(0, CONFIG::control::historyLock, TOPLEVEL::section::config, TOPLEVEL::XML::Scale, UNUSED, UNUSED, UNUSED, UNUSED, UNUSED, TOPLEVEL::action::lowPrio)));}
           }
           Fl_Check_Button H_state {
+            class Fl_Check_Button2
             label State
             callback {//
                        send_data(TOPLEVEL::action::lowPrio, CONFIG::control::historyLock, o->value(), TOPLEVEL::type::Integer, TOPLEVEL::section::config,TOPLEVEL::XML::State);}
@@ -339,6 +357,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code0 {o->value(_SYS_::F2B(fetchData(0, CONFIG::control::historyLock, TOPLEVEL::section::config, TOPLEVEL::XML::State, UNUSED, UNUSED, UNUSED, UNUSED, UNUSED, TOPLEVEL::action::lowPrio)));}
           }
           Fl_Check_Button H_vector {
+            class Fl_Check_Button2
             label Vector
             callback {//
                        send_data(TOPLEVEL::action::lowPrio, CONFIG::control::historyLock, o->value(), TOPLEVEL::type::Integer, TOPLEVEL::section::config,TOPLEVEL::XML::Vector);}
@@ -346,6 +365,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code0 {o->value(_SYS_::F2B(fetchData(0, CONFIG::control::historyLock, TOPLEVEL::section::config, TOPLEVEL::XML::Vector, UNUSED, UNUSED, UNUSED, UNUSED, UNUSED, TOPLEVEL::action::lowPrio)));}
           }
           Fl_Check_Button H_mlearn {
+            class Fl_Check_Button2
             label {Midi Learn}
             callback {//
                        send_data(TOPLEVEL::action::lowPrio, CONFIG::control::historyLock, o->value(), TOPLEVEL::type::Integer, TOPLEVEL::section::config,TOPLEVEL::XML::MLearn);}
@@ -372,6 +392,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code0 {o->value(synth->getRuntime().jackMidiDevice.c_str());}
           }
           Fl_Check_Button jackMidi {
+            class Fl_Check_Button2
             label {Set as preferred MIDI}
             callback {//
                         send_data(TOPLEVEL::action::forceUpdate, CONFIG::control::jackPreferredMidi, o->value(), TOPLEVEL::type::Integer);}
@@ -387,6 +408,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code0 {o->value(synth->getRuntime().jackServer.c_str());}
           }
           Fl_Check_Button jackAudio {
+            class Fl_Check_Button2
             label {Set as preferred audio}
             callback {//
                         send_data(TOPLEVEL::action::forceUpdate, CONFIG::control::jackPreferredAudio, o->value(), TOPLEVEL::type::Integer);}
@@ -394,6 +416,7 @@ or when that loads it will revert to the previous value} xywh {190 60 27 25} dow
             code0 {if (synth->getRuntime().audioEngine == jack_audio) o->value(1);}
           }
           Fl_Check_Button connectJackAudio {
+            class Fl_Check_Button2
             label {Autoconnect audio}
             callback {//
                         send_data(0, CONFIG::control::jackAutoConnectAudio, o->value(), TOPLEVEL::type::Integer);}
@@ -429,6 +452,7 @@ send_data (0, CONFIG::control::alsaMidiType, o->value(), TOPLEVEL::type::Integer
             code0 {o->value(synth->getRuntime().alsaMidiDevice.c_str());}
           }
           Fl_Check_Button alsaMidi {
+            class Fl_Check_Button2
             label {Set as preferred MIDI}
             callback {//
                         send_data(TOPLEVEL::action::forceUpdate, CONFIG::control::alsaPreferredMidi, o->value(), TOPLEVEL::type::Integer);}
@@ -452,6 +476,7 @@ send_data (0, CONFIG::control::alsaMidiType, o->value(), TOPLEVEL::type::Integer
             code1 {o->value(convertSrate(synth->getRuntime().Samplerate));}
           } {}
           Fl_Check_Button alsaAudio {
+            class Fl_Check_Button2
             label {Set as preferred audio}
             callback {//
                         send_data(TOPLEVEL::action::forceUpdate, CONFIG::control::alsaPreferredAudio, o->value(), TOPLEVEL::type::Integer);}
@@ -575,6 +600,7 @@ send_data (0, CONFIG::control::alsaMidiType, o->value(), TOPLEVEL::type::Integer
             code2 {oldBank = o->value();}
           } {}
           Fl_Check_Button progenable {
+            class Fl_Check_Button2
             label {Enable Program Change}
             callback {//
                         send_data(0, CONFIG::control::enableProgramChange, o->value(), TOPLEVEL::type::Integer);}
@@ -582,6 +608,7 @@ send_data (0, CONFIG::control::alsaMidiType, o->value(), TOPLEVEL::type::Integer
             code0 {o->value(synth->getRuntime().EnableProgChange);}
           }
           Fl_Check_Button progpartenable {
+            class Fl_Check_Button2
             label {Enable Part On Program Change}
             callback {//
                         send_data(0, CONFIG::control::instChangeEnablesPart, o->value(), TOPLEVEL::type::Integer);}
@@ -622,6 +649,7 @@ send_data (0, CONFIG::control::alsaMidiType, o->value(), TOPLEVEL::type::Integer
             tooltip {Click to set} xywh {300 180 70 20} box PLASTIC_UP_BOX color 90 labelsize 12 hide
           }
           Fl_Check_Button Epcheck {
+            class Fl_Check_Button2
             label {Enable Extended Program Change}
             callback {// for some weird reason this *must* be the last item in the group
                         if (o->value() == 0)
@@ -644,6 +672,7 @@ send_data (0, CONFIG::control::alsaMidiType, o->value(), TOPLEVEL::type::Integer
             code1 {if (o->value() == 0) EPCspinner->deactivate();}
           }
           Fl_Check_Button enableNRPN {
+            class Fl_Check_Button2
             label {Enable Incoming NRPNs}
             callback {//
                         send_data(0, CONFIG::control::enableNRPNs, o->value(), TOPLEVEL::type::Integer);}
@@ -651,6 +680,7 @@ send_data (0, CONFIG::control::alsaMidiType, o->value(), TOPLEVEL::type::Integer
             code0 {o->value(synth->getRuntime().enable_NRPN);}
           }
           Fl_Check_Button ignoreReset {
+            class Fl_Check_Button2
             label {Ignore Reset all CCs}
             callback {//
                         send_data(0, CONFIG::control::ignoreResetAllCCs, o->value(), TOPLEVEL::type::Integer);}
@@ -658,6 +688,7 @@ send_data (0, CONFIG::control::alsaMidiType, o->value(), TOPLEVEL::type::Integer
             code0 {o->value(synth->getRuntime().ignoreResetCCs);}
           }
           Fl_Check_Button midiMon {
+            class Fl_Check_Button2
             label {Log Incoming Events}
             callback {//
                         send_data(0, CONFIG::control::logIncomingCCs, o->value(), TOPLEVEL::type::Integer);}
@@ -665,6 +696,7 @@ send_data (0, CONFIG::control::alsaMidiType, o->value(), TOPLEVEL::type::Integer
             code0 {o->value(synth->getRuntime().monitorCCin);}
           }
           Fl_Check_Button midiLearned {
+            class Fl_Check_Button2
             label {Show Learn Editor}
             callback {//
                         send_data(0, CONFIG::control::showLearnEditor, o->value(), TOPLEVEL::type::Integer);}

@@ -41,6 +41,9 @@ decl {\#include "UI/YoshiWin.h"} {public local
 decl {\#include "UI/WidgetPDial.h"} {public local
 }
 
+decl {\#include "UI/WidgetCheckButton.h"} {public local
+}
+
 decl {\#include <FL/Fl_Group.H>} {public local
 }
 
@@ -135,6 +138,7 @@ pars=NULL;} {}
           code0 {o->add("Sine");o->add("Tri");o->add("Squr");o->add("R.up");o->add("R.dn");o->add("E1dn");o->add("E2dn");o->add("S&&H");o->add("RSqU");o->add("RSqD");}
         } {}
         Fl_Check_Button continous {
+          class Fl_Check_Button2
           label {C.}
           callback {//
           send_data(0, group, LFOINSERT::control::continuous, o->value(), TOPLEVEL::type::Integer);}
