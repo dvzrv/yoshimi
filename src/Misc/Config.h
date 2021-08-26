@@ -45,9 +45,9 @@ class SynthEngine;
 class Config
 {
     public:
-        Config(SynthEngine *_synth, int argc, char **argv);
+        Config(SynthEngine *_synth, int argc, char **argv, std::list<string> allArgs);
         ~Config();
-        bool Setup(int argc, char **argv);
+        bool Setup(int argc, char **argv, std::list<string> allArgs);
         void StartupReport(const string& clientName);
         void Announce(void);
         void Usage(void);
@@ -228,6 +228,7 @@ class Config
         float *genMixr;
 
     private:
+        void applyOptions(Config*settings, std::list<string> allArgs);
         void loadCmdArgs(int argc, char **argv);
         void defaultPresets(void);
         bool extractBaseParameters(XMLwrapper *xml);
