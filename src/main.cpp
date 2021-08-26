@@ -62,8 +62,6 @@ std::atomic <bool> waitForTest{false};
 void mainRegisterAudioPort(SynthEngine *s, int portnum);
 int mainCreateNewInstance(unsigned int forceId);
 Config *firstRuntime = NULL;
-static int globalArgc = 0;
-static char **globalArgv = NULL;
 static std::list<std::string> globalAllArgs;
 bool isSingleMaster = false;
 bool bShowGui = true;
@@ -313,7 +311,7 @@ int mainCreateNewInstance(unsigned int forceId)
 {
     MusicClient *musicClient = NULL;
     unsigned int instanceID;
-    SynthEngine *synth = new SynthEngine(globalArgc, globalArgv, globalAllArgs, false, forceId);
+    SynthEngine *synth = new SynthEngine(globalAllArgs, false, forceId);
     if (!synth->getRuntime().isRuntimeSetupCompleted())
         goto bail_out;
     instanceID = synth->getUniqueId();
@@ -458,22 +456,12 @@ int main(int argc, char *argv[])
         }
     }
 
-    globalArgc = argc;
-    globalArgv = argv;
-
     std::list<std::string> allArgs;
 
     bool ret;
     int gui;
     int cmd;
     CmdOptions(argc, argv, allArgs, ret, gui, cmd);
-    /*if (!allArgs.empty())
-    {
-        for (std::list<string>::iterator it = allArgs.begin(); it != allArgs.end(); ++it)
-            std::cout << *it << std::endl;
-    }
-    else
-        std::cout << "no args" << std::endl;*/
 
     if (ret)
         exit(0);

@@ -114,7 +114,7 @@ static unsigned int getRemoveSynthId(bool remove = false, unsigned int idx = 0)
 }
 
 
-SynthEngine::SynthEngine(int argc, char **argv, std::list<string> allArgs, bool _isLV2Plugin, unsigned int forceId) :
+SynthEngine::SynthEngine(std::list<string> allArgs, bool _isLV2Plugin, unsigned int forceId) :
     uniqueId(getRemoveSynthId(false, forceId)),
     isLV2Plugin(_isLV2Plugin),
     needsSaving(false),
@@ -123,7 +123,7 @@ SynthEngine::SynthEngine(int argc, char **argv, std::list<string> allArgs, bool 
     midilearn(this),
     mididecode(this),
     //unifiedpresets(this),
-    Runtime(this, argc, argv, allArgs),
+    Runtime(this, allArgs),
     presetsstore(this),
     textMsgBuffer(TextMsgBuffer::instance()),
     fadeAll(0),

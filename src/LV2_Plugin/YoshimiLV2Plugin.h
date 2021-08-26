@@ -35,6 +35,7 @@
 
 #include <sys/types.h>
 #include <string>
+#include <list>
 #include <vector>
 
 #include "Misc/SynthEngine.h"

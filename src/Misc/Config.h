@@ -45,9 +45,9 @@ class SynthEngine;
 class Config
 {
     public:
-        Config(SynthEngine *_synth, int argc, char **argv, std::list<string> allArgs);
+        Config(SynthEngine *_synth, std::list<string> allArgs);
         ~Config();
-        bool Setup(int argc, char **argv, std::list<string> allArgs);
+        bool Setup(std::list<string> allArgs);
         void StartupReport(const string& clientName);
         void Announce(void);
         void Usage(void);
@@ -229,7 +229,6 @@ class Config
 
     private:
         void applyOptions(Config*settings, std::list<string> allArgs);
-        void loadCmdArgs(int argc, char **argv);
         void defaultPresets(void);
         bool extractBaseParameters(XMLwrapper *xml);
         bool extractConfigData(XMLwrapper *xml);

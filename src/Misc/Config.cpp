@@ -30,7 +30,6 @@
 #include <errno.h>
 #include <cmath>
 #include <string>
-#include <argp.h>
 #include <libgen.h>
 #include <limits.h>
 
@@ -78,7 +77,7 @@ int          Config::showCLIcontext = 1;
 
 string jUuid = "";
 
-Config::Config(SynthEngine *_synth, int argc, char **argv, std::list<string> allArgs) :
+Config::Config(SynthEngine *_synth, std::list<string> allArgs) :
     stateChanged(false),
     restoreJackSession(false),
     oldConfig(false),
@@ -176,11 +175,11 @@ Config::Config(SynthEngine *_synth, int argc, char **argv, std::list<string> all
      */
 
     std::cerr.precision(4);
-    bRuntimeSetupCompleted = Setup(argc, argv, allArgs);
+    bRuntimeSetupCompleted = Setup(allArgs);
 }
 
 
-bool Config::Setup(int argc, char **argv, std::list<string> allArgs)
+bool Config::Setup(std::list<string> allArgs)
 {
     static bool torun = true;
     if (torun) // only the first synth can read args
@@ -195,6 +194,9 @@ bool Config::Setup(int argc, char **argv, std::list<string> allArgs)
         TextMsgBuffer::instance().push(message);
         Log("\n\n" + message + "\n");
     }
+    //skip further setup, which is irrelevant for lv2 plugin instance.
+    if (synth->getIsLV2Plugin())
+        return true;
 
     switch (audioEngine)
     {
