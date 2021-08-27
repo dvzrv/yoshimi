@@ -1413,6 +1413,20 @@ void Config::applyOptions(Config* settings, std::list<string> allArgs)
                 settings->StateFile = line;
             }
             break;
+
+        case 'u':
+            if (!line.empty())
+            {
+                settings->sessionStage = _SYS_::type::JackFirst;
+                settings->configChanged = true;
+                settings->StateFile = setExtension(line, EXTEN::state);
+            }
+            break;
+
+        case 'U':
+            if (!line.empty())
+                jUuid = line;
+            break;
         }
         //std::cout << cmd << " line " << line << std::endl;
     }
